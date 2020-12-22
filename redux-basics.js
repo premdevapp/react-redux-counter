@@ -12,10 +12,17 @@ const initialState = {
 const rootReducer = (currState = initialState, action) => {
   if (action.type === "INC_COUNTER")
     return { ...currState, counter: currState.counter + 1 };
+  if (action.type === "DEC_COUNTER")
+    return { ...currState, counter: currState.counter - 1 };
   if (action.type === "ADD_COUNTER")
     return {
       ...currState,
       counter: currState.counter + action.payload.value,
+    };
+  if (action.type === "SUB_COUNTER")
+    return {
+      ...currState,
+      counter: currState.counter - action.payload.value,
     };
   return currState;
 };
@@ -37,5 +44,7 @@ store.dispatch({ type: "INC_COUNTER" });
 //console.log("increment", store.getState());
 store.dispatch({ type: "ADD_COUNTER", payload: { value: 10 } });
 //console.log("addition", store.getState());
-//store.dispatch({type: 'INC_COUNTER'})
-//store.dispatch({type: 'INC_COUNTER'})
+store.dispatch({ type: "DEC_COUNTER" });
+//console.log("decrement", store.getState());
+store.dispatch({ type: "SUB_COUNTER", payload: { value: 10 } });
+//console.log("subraction", store.getState());
